@@ -10,7 +10,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
       ca-certificates curl wget gnupg git openssh-server sudo tmux vim nano less htop ripgrep fd-find jq \
       unzip zip python3 python3-pip python3-venv build-essential procps iproute2 dnsutils \
     && curl -fsSL https://deb.nodesource.com/setup_24.x | bash - \
-    && apt-get install -y --no-install-recommends nodejs \
+    && curl -fsSL -o /usr/share/keyrings/githubcli-archive-keyring.gpg https://cli.github.com/packages/githubcli-archive-keyring.gpg \
+    && echo "deb [arch=amd64 signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" \
+       > /etc/apt/sources.list.d/github-cli.list \
+    && apt-get update && apt-get install -y --no-install-recommends nodejs gh \
     && curl -fsSL -o /usr/local/bin/ttyd "https://github.com/tsl0922/ttyd/releases/download/${TTYD_VERSION}/ttyd.x86_64" \
     && chmod +x /usr/local/bin/ttyd \
     && ln -s /usr/bin/fdfind /usr/local/bin/fd \
@@ -24,7 +27,10 @@ RUN userdel -r ubuntu 2>/dev/null || true \
     && cp -a /home/dev/. /opt/skel/
 
 ENV NPM_CONFIG_PREFIX=/opt/agents PATH=/opt/agents/bin:$PATH
-RUN mkdir -p /opt/agents && chown dev:dev /opt/agents     && su dev -c "NPM_CONFIG_PREFIX=/opt/agents npm install -g --no-fund --no-audit @anthropic-ai/claude-code @openai/codex @google/gemini-cli"     && su dev -c "npm cache clean --force" && rm -rf /home/dev/.npm /opt/skel/.npm
+RUN mkdir -p /opt/agents && chown dev:dev /opt/agents \
+    && su dev -c "npm install -g --no-fund --no-audit @anthropic-ai/claude-code @openai/codex @google/gemini-cli" \
+    && su dev -c "npm cache clean --force" \
+    && rm -rf /home/dev/.npm
 
 COPY bashrc-extra.sh /opt/bashrc-extra.sh
 COPY install-agents.sh /usr/local/bin/install-agents

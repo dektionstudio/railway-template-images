@@ -41,6 +41,11 @@ for v in ANTHROPIC_API_KEY OPENAI_API_KEY GEMINI_API_KEY GITHUB_TOKEN; do
 done
 chown root:dev /etc/profile.d/box-keys.sh && chmod 640 /etc/profile.d/box-keys.sh
 
+# With a GitHub token, gh and git push over HTTPS work without a login step.
+if [ -n "${GITHUB_TOKEN:-}" ]; then
+  runuser -u dev -- env HOME="$HOME_DIR" GITHUB_TOKEN="$GITHUB_TOKEN" gh auth setup-git || true
+fi
+
 echo "Browser terminal on port $PORT (user dev). SSH on port 22 through the TCP proxy."
 cd "$HOME_DIR"
 exec runuser -u dev -- env HOME="$HOME_DIR" USER=dev LOGNAME=dev SHELL=/bin/bash \
