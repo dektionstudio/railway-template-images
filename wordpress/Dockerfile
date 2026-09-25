@@ -1,6 +1,6 @@
 # WordPress (official image) with the Railway fixes done at build time instead of in a start command:
-# - only mpm_prefork enabled (mod_php needs it; several Railway WordPress templates fail with
-#   "More than one MPM loaded" and patch it on every boot)
+# - only mpm_prefork at runtime (mod_php needs it). On Railway the mpm_event symlinks the upstream image
+#   deletes come back, so Apache stops with "More than one MPM loaded"; railway-entrypoint.sh removes them
 # - PHP limits for real sites: 128 MB uploads, 256 MB memory
 # - real visitor IPs from Railway's proxy (mod_remoteip), so logs and security plugins see clients
 # - WP-CLI (run it from a shell opened with `railway ssh`: wp --allow-root ...)
@@ -13,4 +13,8 @@ RUN a2dismod -f mpm_event mpm_worker >/dev/null 2>&1 || true \
 
 COPY php-railway.ini /usr/local/etc/php/conf.d/zz-railway.ini
 COPY apache-railway.conf /etc/apache2/conf-available/railway.conf
-RUN a2enconf railway
+COPY railway-entrypoint.sh /usr/local/bin/railway-entrypoint.sh
+RUN a2enconf railway && chmod +x /usr/local/bin/railway-entrypoint.sh
+
+ENTRYPOINT ["railway-entrypoint.sh"]
+CMD ["apache2-foreground"]
