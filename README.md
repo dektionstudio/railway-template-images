@@ -3,6 +3,7 @@
 Dockerfiles behind the Railway templates published by Dektion Studio. Railway builds each folder when someone deploys the template.
 
 - `coding-box`: Ubuntu 24.04 with a browser terminal (ttyd), SSH and tmux, with Claude Code, Codex and Gemini CLI preinstalled. The home directory goes on a Railway volume
+- `opencode`: OpenCode's web UI (pinned version, basic auth through OPENCODE_SERVER_PASSWORD), home directory on a Railway volume
 - `wordpress`: the official WordPress image with prefork only, 128 MB uploads, real client IPs behind Railway's proxy and WP-CLI
 
 MIT licensed. Issues and pull requests are welcome.
