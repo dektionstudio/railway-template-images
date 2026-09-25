@@ -30,7 +30,10 @@ ENV NPM_CONFIG_PREFIX=/opt/agents PATH=/opt/agents/bin:$PATH
 RUN mkdir -p /opt/agents && chown dev:dev /opt/agents \
     && su dev -c "npm install -g --no-fund --no-audit @anthropic-ai/claude-code @openai/codex @google/gemini-cli" \
     && su dev -c "npm cache clean --force" \
-    && rm -rf /home/dev/.npm
+    && rm -rf /home/dev/.npm \
+    && sed -i 's#^PATH="#PATH="/opt/agents/bin:#' /etc/environment \
+    && echo 'NPM_CONFIG_PREFIX="/opt/agents"' >> /etc/environment
+# /etc/environment is what sshd sessions get, including non-interactive ones (ssh box claude, VS Code Remote-SSH).
 
 COPY bashrc-extra.sh /opt/bashrc-extra.sh
 COPY install-agents.sh /usr/local/bin/install-agents
