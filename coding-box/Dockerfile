@@ -1,5 +1,6 @@
 # Ubuntu box for AI coding agents: browser terminal (ttyd) + SSH, home directory on a Railway volume.
-# The agent CLIs install into the home volume on first boot, so they persist and can update themselves.
+# The agent CLIs are baked into the image under /opt/agents (owned by dev, so they can update themselves);
+# the volume only holds the home directory: projects, logins and settings. Railway's trial volume is 0.5 GB.
 FROM ubuntu:24.04
 
 ARG TTYD_VERSION=1.7.7
@@ -21,6 +22,9 @@ RUN userdel -r ubuntu 2>/dev/null || true \
     && echo "dev ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/dev \
     && mkdir -p /run/sshd /opt/skel \
     && cp -a /home/dev/. /opt/skel/
+
+ENV NPM_CONFIG_PREFIX=/opt/agents PATH=/opt/agents/bin:$PATH
+RUN mkdir -p /opt/agents && chown dev:dev /opt/agents     && su dev -c "NPM_CONFIG_PREFIX=/opt/agents npm install -g --no-fund --no-audit @anthropic-ai/claude-code @openai/codex @google/gemini-cli"     && su dev -c "npm cache clean --force" && rm -rf /home/dev/.npm /opt/skel/.npm
 
 COPY bashrc-extra.sh /opt/bashrc-extra.sh
 COPY install-agents.sh /usr/local/bin/install-agents

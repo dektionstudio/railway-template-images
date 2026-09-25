@@ -1,6 +1,6 @@
 #!/bin/bash
-# Prepares the home volume, starts sshd, installs the agent CLIs on first boot, then serves a
-# password-protected browser terminal attached to a persistent tmux session.
+# Prepares the home volume, starts sshd, then serves a password-protected browser terminal
+# attached to a persistent tmux session. The agent CLIs come from the image (/opt/agents).
 set -eu
 
 : "${BOX_PASSWORD:?BOX_PASSWORD is required}"
@@ -40,10 +40,6 @@ for v in ANTHROPIC_API_KEY OPENAI_API_KEY GEMINI_API_KEY GITHUB_TOKEN; do
   if [ -n "${!v:-}" ]; then printf 'export %s=%q\n' "$v" "${!v}" >> /etc/profile.d/box-keys.sh; fi
 done
 chown root:dev /etc/profile.d/box-keys.sh && chmod 640 /etc/profile.d/box-keys.sh
-
-if [ "${INSTALL_AGENTS:-true}" = "true" ]; then
-  runuser -l dev -c install-agents || echo "Agent install failed; run install-agents in the terminal to retry."
-fi
 
 echo "Browser terminal on port $PORT (user dev). SSH on port 22 through the TCP proxy."
 cd "$HOME_DIR"
