@@ -48,6 +48,7 @@ fi
 
 echo "Browser terminal on port $PORT (user dev). SSH on port 22 through the TCP proxy."
 cd "$HOME_DIR"
+# --debug 3 keeps errors and warnings; ttyd's default level prints the login credential (base64) to the logs.
 exec runuser -u dev -- env HOME="$HOME_DIR" USER=dev LOGNAME=dev SHELL=/bin/bash \
-  ttyd --port "$PORT" --writable --credential "dev:${BOX_PASSWORD}" -t titleFixed="Coding box" \
+  ttyd --debug 3 --port "$PORT" --writable --credential "dev:${BOX_PASSWORD}" -t titleFixed="Coding box" \
   tmux new-session -A -s main
