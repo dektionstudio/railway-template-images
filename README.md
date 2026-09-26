@@ -21,6 +21,7 @@ Every template was deployed and tested end to end before it was published; each 
 - [OpenCode](https://railway.com/deploy/opencode-web?referralCode=8ySoaR): OpenCode's web UI with a password
 - [OpenDesign](https://railway.com/deploy/opendesign?referralCode=8ySoaR): OpenDesign with Claude Code, Codex and OpenCode installed
 - [Paperclip](https://railway.com/deploy/paperclip-official-image?referralCode=8ySoaR): Paperclip with Postgres, first admin invite in the deploy logs
+- [SearXNG MCP](https://railway.com/deploy/searxng-mcp?referralCode=8ySoaR): web search for AI agents over MCP, with a private SearXNG and no API key
 - [SillyTavern](https://railway.com/deploy/sillytavern-official-image?referralCode=8ySoaR): official image, password-protected, chats on a volume
 - [Twenty](https://railway.com/deploy/twenty-2?referralCode=8ySoaR): Twenty CRM with its worker, Postgres, Redis and private file storage, admin account set at deploy
 - [WordPress](https://railway.com/deploy/wordpress-mariadb-wp-cli?referralCode=8ySoaR): WordPress on MariaDB with WP-CLI
@@ -40,6 +41,7 @@ These links carry my Railway referral code: if you create a Railway account thro
 - `open-design`: OpenDesign's official image plus the Claude Code, Codex and OpenCode CLIs (upstream leaves them out and suggests a separate layer for servers), data and CLI logins on a volume
 - `opencode`: OpenCode's web UI (pinned version, basic auth through OPENCODE_SERVER_PASSWORD), home directory on a Railway volume
 - `paperclip`: Paperclip's official image plus a start step that prints the first admin's one-time invite link in the deploy logs (a public instance can't be claimed from the browser)
+- `searxng`: the official SearXNG image plus settings that turn on the JSON API and keep only search engines that answer from datacenter IPs
 - `twenty`: the official Twenty image plus a start step (shell, curl and jq) that creates the admin account and workspace from TWENTY_ADMIN_EMAIL / TWENTY_ADMIN_PASSWORD
 - `wordpress`: the official WordPress image with prefork only, 128 MB uploads, real client IPs behind Railway's proxy and WP-CLI
 
