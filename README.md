@@ -2,6 +2,7 @@
 
 Dockerfiles behind the Railway templates published by Dektion Studio. Railway builds each folder when someone deploys the template.
 
+- `activepieces`: the official Activepieces image plus a start step that signs the platform owner up from ADMIN_EMAIL / ADMIN_PASSWORD (later sign-ups need an invitation)
 - `coding-box`: Ubuntu 24.04 with a browser terminal (ttyd), SSH and tmux, with Claude Code, Codex and Gemini CLI preinstalled. The home directory goes on a Railway volume
 - `librechat`: a pinned LibreChat release plus a start step that creates the admin account from ADMIN_EMAIL / ADMIN_PASSWORD (registration stays closed), keeps uploads on a volume and adds an OpenRouter endpoint
 - `lobehub`: LobeHub's official image plus a start step that creates the file bucket with a CORS rule for browser uploads, and a JWKS_KEY kept in that private bucket
