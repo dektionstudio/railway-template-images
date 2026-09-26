@@ -1,0 +1,13 @@
+# Private SearXNG for AI tools. Everything not listed here keeps SearXNG's defaults.
+use_default_settings: true
+
+server:
+  # server.secret_key comes from the SEARXNG_SECRET variable
+  limiter: false
+  public_instance: false
+  image_proxy: false
+
+search:
+  formats:
+    - html
+    - json
