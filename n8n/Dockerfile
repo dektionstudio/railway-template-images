@@ -4,7 +4,5 @@
 ARG N8N_VERSION=2.40.7
 FROM n8nio/n8n:${N8N_VERSION}
 USER root
-RUN apk add --no-cache su-exec
-COPY railway-start.sh railway-claim.mjs /usr/local/bin/
-RUN chmod 755 /usr/local/bin/railway-start.sh
-ENTRYPOINT ["tini", "--", "/usr/local/bin/railway-start.sh"]
+COPY railway-start.mjs railway-claim.mjs /usr/local/bin/
+ENTRYPOINT ["tini", "--", "node", "/usr/local/bin/railway-start.mjs"]
