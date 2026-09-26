@@ -1,5 +1,24 @@
 # Private SearXNG for AI tools. Everything not listed here keeps SearXNG's defaults.
-use_default_settings: true
+use_default_settings:
+  engines:
+    # From Railway's datacenter IPs (tested 2026-09-26) Google, Bing and Yahoo answer; DuckDuckGo shows a
+    # CAPTCHA and Brave, Startpage, Qwant and Mojeek return nothing. Keeping only engines that work avoids a
+    # timeout on every search.
+    keep_only:
+      - google
+      - bing
+      - yahoo
+      - wikipedia
+      - wikidata
+      - google news
+      - bing news
+      - yahoo news
+      - github
+      - stackoverflow
+      - arxiv
+      - pypi
+      - npm
+      - mdn
 
 server:
   # server.secret_key comes from the SEARXNG_SECRET variable
@@ -11,3 +30,9 @@ search:
   formats:
     - html
     - json
+
+engines:
+  - name: yahoo
+    disabled: false
+  - name: yahoo news
+    disabled: false
