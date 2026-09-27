@@ -7,12 +7,16 @@
 	# "Ollama is running": Railway's healthcheck, no model access.
 	@root path /
 	handle @root {
-		reverse_proxy 127.0.0.1:11434
+		reverse_proxy 127.0.0.1:11434 {
+			# Ollama refuses non-local Host headers (DNS rebinding protection).
+			header_up Host 127.0.0.1:11434
+		}
 	}
 
 	@authorized header Authorization "Bearer {$OLLAMA_API_KEY}"
 	handle @authorized {
 		reverse_proxy 127.0.0.1:11434 {
+			header_up Host 127.0.0.1:11434
 			flush_interval -1
 		}
 	}
