@@ -26,6 +26,7 @@ Every template was deployed and tested end to end before it was published; each 
 - [SearXNG](https://railway.com/deploy/searxng-4?referralCode=8ySoaR): private SearXNG behind a password, with engines that answer from Railway
 - [SearXNG MCP](https://railway.com/deploy/searxng-mcp?referralCode=8ySoaR): web search for AI agents over MCP, with a private SearXNG and no API key
 - [SillyTavern](https://railway.com/deploy/sillytavern-official-image?referralCode=8ySoaR): official image, password-protected, chats on a volume
+- [Strapi](https://railway.com/deploy/strapi-2?referralCode=8ySoaR): Strapi 5 on Postgres, admin account set at deploy, uploads on a volume
 - [Twenty](https://railway.com/deploy/twenty-2?referralCode=8ySoaR): Twenty CRM with its worker, Postgres, Redis and private file storage, admin account set at deploy
 - [WordPress](https://railway.com/deploy/wordpress-mariadb-wp-cli?referralCode=8ySoaR): WordPress on MariaDB with WP-CLI
 
@@ -48,6 +49,7 @@ These links carry my Railway referral code: if you create a Railway account thro
 - `pterodactyl`: the official Pterodactyl Panel image plus a start step that creates the first admin from PTERODACTYL_ADMIN_EMAIL / PTERODACTYL_ADMIN_PASSWORD after the migrations
 - `searxng`: the official SearXNG image plus settings that turn on the JSON API, keep only search engines that answer from datacenter IPs and turn Google and Bing on
 - `searxng-web`: a Caddy password prompt in front of a private SearXNG (only /healthz is open)
+- `strapi`: a clean Strapi 5 project (JavaScript, Postgres) that creates the first admin from STRAPI_ADMIN_EMAIL / STRAPI_ADMIN_PASSWORD before the server listens and trusts Railway's proxy; copy it to add your own content types
 - `twenty`: the official Twenty image plus a start step (shell, curl and jq) that creates the admin account and workspace from TWENTY_ADMIN_EMAIL / TWENTY_ADMIN_PASSWORD
 - `wordpress`: the official WordPress image with prefork only, 128 MB uploads, real client IPs behind Railway's proxy and WP-CLI
 
