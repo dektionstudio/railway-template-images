@@ -31,8 +31,18 @@ search:
     - html
     - json
 
+# Enabled explicitly: some of these are off in SearXNG's default selection, which left Yahoo as the only
+# engine answering a normal search (tested 2026-09-27: Google and Bing return 10 results each when on).
 engines:
+  - name: google
+    disabled: false
+  - name: bing
+    disabled: false
   - name: yahoo
+    disabled: false
+  - name: google news
+    disabled: false
+  - name: bing news
     disabled: false
   - name: yahoo news
     disabled: false
