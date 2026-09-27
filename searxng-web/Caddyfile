@@ -1,0 +1,21 @@
+{
+	admin off
+	auto_https off
+}
+
+:{$PORT:8080} {
+	handle /healthz {
+		reverse_proxy {$SEARXNG_UPSTREAM}
+	}
+
+	handle {
+		basic_auth {
+			{$SEARXNG_USERNAME} {$SEARXNG_PASSWORD_HASH}
+		}
+		# SearXNG reads the client address from these headers.
+		reverse_proxy {$SEARXNG_UPSTREAM} {
+			header_up X-Forwarded-For {remote_host}
+			header_up X-Real-IP {remote_host}
+		}
+	}
+}
