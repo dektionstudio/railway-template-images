@@ -1,0 +1,4 @@
+# The database is on Railway's private network with a self-signed certificate; the image's MariaDB client
+# verifies server certificates by default, which breaks Laravel's schema load.
+[client]
+ssl-verify-server-cert=OFF
