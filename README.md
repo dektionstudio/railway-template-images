@@ -7,7 +7,6 @@ Dockerfiles behind the Railway templates published by Dektion Studio. Railway bu
 Every template was deployed and tested end to end before it was published; each template's page on Railway says what was tested.
 
 - [Activepieces](https://railway.com/deploy/activepieces-4?referralCode=8ySoaR): automation with Postgres and Redis, owner account set at deploy
-- [Claude Code Box](https://railway.com/deploy/claude-code-box?referralCode=8ySoaR): Ubuntu with Claude Code, Codex and Gemini CLI, browser terminal and SSH
 - [Ghost](https://railway.com/deploy/ghost-1?referralCode=8ySoaR): Ghost 6 with MySQL, owner account set at deploy
 - [Hermes Agent](https://railway.com/deploy/hermes-agent-official-image?referralCode=8ySoaR): Nous Research's agent on the official image, with an API key and Telegram
 - [Hermes Agent with Hindsight Memory](https://railway.com/deploy/hermes-agent-with-hindsight-memory?referralCode=8ySoaR): Hermes with self-hosted Hindsight memory
@@ -28,6 +27,7 @@ Every template was deployed and tested end to end before it was published; each 
 - [SillyTavern](https://railway.com/deploy/sillytavern-official-image?referralCode=8ySoaR): official image, password-protected, chats on a volume
 - [Strapi](https://railway.com/deploy/strapi-2?referralCode=8ySoaR): Strapi 5 on Postgres, admin account set at deploy, uploads on a volume
 - [Twenty](https://railway.com/deploy/twenty-2?referralCode=8ySoaR): Twenty CRM with its worker, Postgres, Redis and private file storage, admin account set at deploy
+- [Ubuntu + Claude Code](https://railway.com/deploy/claude-code-box?referralCode=8ySoaR): Ubuntu 24.04 with Claude Code, Codex and Gemini CLI, browser terminal and SSH, home directory on a volume
 - [WordPress](https://railway.com/deploy/wordpress-mariadb-wp-cli?referralCode=8ySoaR): WordPress on MariaDB with WP-CLI
 
 These links carry my Railway referral code: if you create a Railway account through one, Railway credits me for the referral.
