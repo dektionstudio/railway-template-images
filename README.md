@@ -7,6 +7,7 @@ Dockerfiles behind the Railway templates published by Dektion Studio. Railway bu
 Every template was deployed and tested end to end before it was published; each template's page on Railway says what was tested.
 
 - [Activepieces](https://railway.com/deploy/activepieces-4?referralCode=8ySoaR): automation with Postgres and Redis, owner account set at deploy
+- [DBX](https://railway.com/deploy/dbx?referralCode=8ySoaR): web database client for 100+ databases with an MCP endpoint, password set at deploy
 - [Ghost](https://railway.com/deploy/ghost-1?referralCode=8ySoaR): Ghost 6 with MySQL, owner account set at deploy
 - [Hermes Agent](https://railway.com/deploy/hermes-agent-official-image?referralCode=8ySoaR): Nous Research's agent on the official image, with an API key and Telegram
 - [Hermes Agent with Hindsight Memory](https://railway.com/deploy/hermes-agent-with-hindsight-memory?referralCode=8ySoaR): Hermes with self-hosted Hindsight memory
