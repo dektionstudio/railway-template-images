@@ -20,6 +20,7 @@ Every template was deployed and tested end to end before it was published; each 
 - [NiubiGEO](https://railway.com/deploy/niubigeo?referralCode=8ySoaR): AI brand visibility reports behind a login
 - [Open WebUI](https://railway.com/deploy/open-webui-8?referralCode=8ySoaR): Open WebUI on Postgres with pgvector, admin account set at deploy
 - [Ollama](https://railway.com/deploy/ollama-1?referralCode=8ySoaR): Ollama with an API key in front, models on a volume
+- [OpenMuse](https://railway.com/deploy/openmuse-1?referralCode=8ySoaR): CopilotKit's personal agent with a private browser worker, on Postgres
 - [OpenCode](https://railway.com/deploy/opencode-web?referralCode=8ySoaR): OpenCode's web UI with a password
 - [OpenDesign](https://railway.com/deploy/opendesign?referralCode=8ySoaR): OpenDesign with Claude Code, Codex and OpenCode installed
 - [Paperclip](https://railway.com/deploy/paperclip-official-image?referralCode=8ySoaR): Paperclip with Postgres, first admin invite in the deploy logs
@@ -47,6 +48,7 @@ These links carry my Railway referral code: if you create a Railway account thro
 - `niubigeo`: NiubiGEO's official image with its workbench and scheduling worker in one container, behind a password
 - `ollama`: the official Ollama image with Caddy in front checking OLLAMA_API_KEY (Ollama itself has no authentication), models pulled from OLLAMA_PULL_MODELS
 - `open-design`: OpenDesign's official image plus the Claude Code, Codex and OpenCode CLIs (upstream leaves them out and suggests a separate layer for servers), data and CLI logins on a volume
+- `openmuse-api`, `openmuse-browser`, `openmuse-web`: OpenMuse built from a pinned commit: the API (on Postgres instead of its embedded store), the Chromium worker listening on Railway's private IPv6 network, and the Expo web app behind Caddy
 - `opencode`: OpenCode's web UI (pinned version, basic auth through OPENCODE_SERVER_PASSWORD), home directory on a Railway volume
 - `paperclip`: Paperclip's official image plus a start step that prints the first admin's one-time invite link in the deploy logs (a public instance can't be claimed from the browser)
 - `pterodactyl`: the official Pterodactyl Panel image plus a start step that creates the first admin from PTERODACTYL_ADMIN_EMAIL / PTERODACTYL_ADMIN_PASSWORD after the migrations
