@@ -2,7 +2,8 @@
 # coding-agent CLIs it can drive. Upstream leaves Claude Code, Codex and OpenCode out of the image on purpose
 # and suggests a separate layer for servers that need them; this is that layer. libc6-compat is what upstream's
 # Dockerfile.local adds so those CLIs run on Alpine.
-ARG OD_VERSION=latest
+# Pinned: "latest" let an upstream change break new deploys without notice. Bump after testing.
+ARG OD_VERSION=0.24.1
 FROM ghcr.io/nexu-io/od:${OD_VERSION}
 USER root
 RUN apk add --no-cache libc6-compat su-exec \
