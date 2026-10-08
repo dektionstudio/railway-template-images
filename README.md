@@ -32,6 +32,7 @@ Every template was deployed and tested end to end before it was published; each 
 - [SillyTavern](https://railway.com/deploy/sillytavern-official-image?referralCode=8ySoaR): official image, password-protected, chats on a volume
 - [Strapi](https://railway.com/deploy/strapi-2?referralCode=8ySoaR): Strapi 5 on Postgres, admin account set at deploy, uploads on a volume
 - [Twenty](https://railway.com/deploy/twenty-2?referralCode=8ySoaR): Twenty CRM with its worker, Postgres, Redis and private file storage, admin account set at deploy
+- [Typebot](https://railway.com/deploy/typebot-2?referralCode=8ySoaR): chatbot builder and viewer on Postgres and Redis, with a mailbox so the sign-in code arrives on any Railway plan
 - [Ubuntu + Claude Code](https://railway.com/deploy/claude-code-box?referralCode=8ySoaR): Ubuntu 24.04 with Claude Code, Codex and Gemini CLI, browser terminal and SSH, home directory on a volume
 - [WordPress](https://railway.com/deploy/wordpress-mariadb-wp-cli?referralCode=8ySoaR): WordPress on MariaDB with WP-CLI
 
