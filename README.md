@@ -8,6 +8,7 @@ Every template was deployed and tested end to end before it was published; each 
 
 - [Activepieces](https://railway.com/deploy/activepieces-4?referralCode=8ySoaR): automation with Postgres and Redis, owner account set at deploy
 - [Bifrost](https://railway.com/deploy/bifrost-3?referralCode=8ySoaR): AI gateway for 20+ providers, dashboard login and API keys required from the first start
+- [code-server](https://railway.com/deploy/code-server-4?referralCode=8ySoaR): VS Code in the browser with a password, Claude Code and Codex, home directory on a volume
 - [DBX](https://railway.com/deploy/dbx?referralCode=8ySoaR): web database client for 100+ databases with an MCP endpoint, password set at deploy
 - [Ghost](https://railway.com/deploy/ghost-1?referralCode=8ySoaR): Ghost 6 with MySQL, owner account set at deploy
 - [Hermes Agent](https://railway.com/deploy/hermes-agent-official-image?referralCode=8ySoaR): Nous Research's agent on the official image, with an API key and Telegram
@@ -40,6 +41,7 @@ These links carry my Railway referral code: if you create a Railway account thro
 
 - `activepieces`: the official Activepieces image plus a start step that signs the platform owner up from ADMIN_EMAIL / ADMIN_PASSWORD (later sign-ups need an invitation)
 - `bifrost`: the official Bifrost image plus a start step that writes a locked-down config.json on every start (dashboard login, a key required on every model call, CORS limited to the public domain, providers from variables)
+- `code-server`: the official code-server image plus Node.js 22 and the Claude Code and Codex CLIs; the start step hands the root-owned volume to the coder user and refuses to start without PASSWORD
 - `coding-box`: Ubuntu 24.04 with a browser terminal (ttyd), SSH and tmux, with Claude Code, Codex and Gemini CLI preinstalled. The home directory goes on a Railway volume
 - `ghost`: the official Ghost image plus a start step that creates the owner account through Ghost's setup API from GHOST_ADMIN_EMAIL / GHOST_ADMIN_PASSWORD
 - `librechat`: a pinned LibreChat release plus a start step that creates the admin account from ADMIN_EMAIL / ADMIN_PASSWORD (registration stays closed), keeps uploads on a volume and adds an OpenRouter endpoint
