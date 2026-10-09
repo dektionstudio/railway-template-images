@@ -6,6 +6,9 @@ if [ ${#LOCAL_BACKEND_API_KEY} -lt 24 ]; then
   echo "[railway] LOCAL_BACKEND_API_KEY must be set (24+ characters); not starting an agent server without a key"
   exit 1
 fi
+# The image's entrypoint hands LOCAL_BACKEND_API_KEY to the agent server only when it generated the key itself;
+# a key you set leaves the API open. Pass it the way the agent server reads it.
+export OH_SESSION_API_KEYS_0="$LOCAL_BACKEND_API_KEY"
 # Railway mounts the volume as root; the image runs as openhands.
 chown openhands:openhands /home/openhands
 if [ ! -f /home/openhands/.railway-home ]; then
