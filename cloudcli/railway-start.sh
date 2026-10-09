@@ -19,12 +19,11 @@ else
   echo "[railway] home directory on the volume since $(cat "$H/.railway-home")"
 fi
 export SERVER_PORT="${PORT:-3001}" DATABASE_PATH="$H/.cloudcli/auth.db"
-as_node() { setpriv --reuid=node --regid=node --init-groups env HOME="$H" USER=node "$@"; }
 
 # CloudCLI is single-user and lets the first visitor create the account. Create it from CLOUDCLI_USERNAME /
 # CLOUDCLI_PASSWORD on localhost first, so the public port never serves an unclaimed instance.
 if [ ! -f "$H/.cloudcli/.railway-account" ]; then
-  as_node env HOST=127.0.0.1 cloudcli start > /tmp/cloudcli-setup.log 2>&1 &
+  setpriv --reuid=node --regid=node --init-groups env HOME="$H" USER=node HOST=127.0.0.1 cloudcli start > /tmp/cloudcli-setup.log 2>&1 &
   pid=$!
   i=0
   until curl -fs "http://127.0.0.1:$SERVER_PORT/health" > /dev/null; do
@@ -40,6 +39,9 @@ if [ ! -f "$H/.cloudcli/.railway-account" ]; then
   fi
   kill "$pid" 2>/dev/null || true
   wait "$pid" 2>/dev/null || true
+  # the public instance needs the port
+  i=0
+  while curl -fs "http://127.0.0.1:$SERVER_PORT/health" > /dev/null && [ $i -lt 30 ]; do i=$((i + 1)); sleep 1; done
   touch "$H/.cloudcli/.railway-account" && chown node:node "$H/.cloudcli/.railway-account"
 fi
 echo "[railway] cloudcli $(cloudcli version 2>/dev/null | grep -o '[0-9][0-9.]*' | head -1) | node $(node --version) | claude $(claude --version 2>/dev/null | head -1) | codex $(codex --version 2>/dev/null | head -1) | opencode $(opencode --version 2>/dev/null | head -1)"
