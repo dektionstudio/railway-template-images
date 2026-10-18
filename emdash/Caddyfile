@@ -1,0 +1,17 @@
+{
+	admin off
+	auto_https off
+}
+
+:{$PORT:8080} {
+	# The admin and the first-run setup need ADMIN_GATE_USER / ADMIN_GATE_PASSWORD on top of EmDash's own login.
+	# The public site, its media and the setup status stay open.
+	@gate {
+		path /_emdash/admin /_emdash/admin/* /_emdash/api/setup /_emdash/api/setup/*
+		not path /_emdash/api/setup/status
+	}
+	basic_auth @gate bcrypt "EmDash admin" {
+		{$ADMIN_GATE_USER} {$ADMIN_GATE_HASH}
+	}
+	reverse_proxy 127.0.0.1:4321
+}
