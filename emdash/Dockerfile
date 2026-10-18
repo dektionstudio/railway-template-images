@@ -11,14 +11,15 @@ ARG EMDASH_SITE_URL
 ENV EMDASH_SITE_URL=${EMDASH_SITE_URL}
 RUN apt-get update && apt-get install -y --no-install-recommends git ca-certificates && rm -rf /var/lib/apt/lists/* \
  && npm install -g pnpm@11.9.0
-RUN git clone https://github.com/emdash-cms/templates /src && cd /src && git checkout "$TEMPLATES_COMMIT"
-WORKDIR /src/blog
+# Built in /app, where it runs: Astro bakes absolute paths (its session store) into the build.
+RUN git clone https://github.com/emdash-cms/templates /tmp/templates && cd /tmp/templates && git checkout "$TEMPLATES_COMMIT"  && mkdir -p /app && cp -r /tmp/templates/blog/. /app/ && rm -rf /tmp/templates
+WORKDIR /app
 COPY astro.config.mjs ./astro.config.mjs
 RUN pnpm install && pnpm build
 
 FROM node:24-bookworm-slim
 COPY --from=caddy /usr/bin/caddy /usr/local/bin/caddy
-COPY --from=build --chown=node:node /src/blog /app
+COPY --from=build --chown=node:node /app /app
 COPY Caddyfile /etc/caddy/Caddyfile
 COPY railway-start.sh /railway-start.sh
 WORKDIR /app
