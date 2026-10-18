@@ -11,6 +11,7 @@ Every template was deployed and tested end to end before it was published; each 
 - [Claude Code UI](https://railway.com/deploy/claude-code-ui?referralCode=8ySoaR): CloudCLI with Claude Code, Codex and OpenCode, account created before the page goes public, home directory on a volume
 - [code-server](https://railway.com/deploy/code-server-4?referralCode=8ySoaR): VS Code in the browser with a password, Claude Code and Codex, home directory on a volume
 - [DBX](https://railway.com/deploy/dbx?referralCode=8ySoaR): web database client for 100+ databases with an MCP endpoint, password set at deploy
+- [EmDash](https://railway.com/deploy/emdash?referralCode=8ySoaR): EmDash CMS (Astro) with the admin and its first-run setup behind a password, data on a volume
 - [Ghost](https://railway.com/deploy/ghost-1?referralCode=8ySoaR): Ghost 6 with MySQL, owner account set at deploy
 - [Hermes Agent](https://railway.com/deploy/hermes-agent-official-image?referralCode=8ySoaR): Nous Research's agent on the official image, with an API key and Telegram
 - [Hermes Agent with Hindsight Memory](https://railway.com/deploy/hermes-agent-with-hindsight-memory?referralCode=8ySoaR): Hermes with self-hosted Hindsight memory
@@ -49,6 +50,7 @@ These links carry my Railway referral code: if you create a Railway account thro
 - `cloudcli`: CloudCLI (Claude Code UI) from npm, pinned, on Node.js 22 with the Claude Code, Codex and OpenCode CLIs; the first start creates the account on localhost before the public port opens, and everything runs as the node user with the home directory on a volume
 - `code-server`: the official code-server image plus Node.js 22 and the Claude Code and Codex CLIs; the start step hands the root-owned volume to the coder user and refuses to start without PASSWORD
 - `coding-box`: Ubuntu 24.04 with a browser terminal (ttyd), SSH and tmux, with Claude Code, Codex and Gemini CLI preinstalled. The home directory goes on a Railway volume
+- `emdash`: EmDash's Node blog starter at a pinned commit, built where it runs (Astro bakes its session path in), SQLite and uploads on the volume, and Caddy in front so the admin and the setup wizard need a password before EmDash's passkey login
 - `ghost`: the official Ghost image plus a start step that creates the owner account through Ghost's setup API from GHOST_ADMIN_EMAIL / GHOST_ADMIN_PASSWORD
 - `librechat`: a pinned LibreChat release plus a start step that creates the admin account from ADMIN_EMAIL / ADMIN_PASSWORD (registration stays closed), keeps uploads on a volume and adds an OpenRouter endpoint
 - `lobehub`: LobeHub's official image plus a start step that creates the file bucket with a CORS rule for browser uploads, and a JWKS_KEY kept in that private bucket
