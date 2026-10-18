@@ -46,7 +46,8 @@ RUN sed -i \
       -e 's|/srv/media/|/app/media/|g' \
       -e 's|set_real_ip_from 127.0.0.1;|set_real_ip_from 127.0.0.1;\nset_real_ip_from 100.64.0.0/10;|' \
       /etc/nginx/conf.d/doory.conf \
- && grep -q 'server 127.0.0.1:8000;' /etc/nginx/conf.d/doory.conf && ! grep -v '^ *#' /etc/nginx/conf.d/doory.conf | grep -q 'doory-api|/srv/media'\|/srv/media' /etc/nginx/conf.d/doory.conf \
+ && grep -q 'server 127.0.0.1:8000;' /etc/nginx/conf.d/doory.conf \
+ && ! grep -v '^ *#' /etc/nginx/conf.d/doory.conf | grep -q -e 'doory-api' -e '/srv/media' \
  && chmod +x /app/docker-entrypoint.sh \
  && mkdir -p /app/media /app/exports /app/staticfiles && chown doory:doory /app /app/media /app/exports /app/staticfiles
 COPY railway-start.sh /railway-start.sh
