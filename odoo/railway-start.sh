@@ -19,7 +19,6 @@ fi
 CONF=/etc/odoo/railway.conf
 cat > "$CONF" <<CONF
 [options]
-addons_path = /mnt/extra-addons
 data_dir = /var/lib/odoo
 db_host = $PGHOST
 db_port = $PGPORT
@@ -59,5 +58,5 @@ PY
 else
   echo "[railway] database $DB already set up (on the volume since $(cat /var/lib/odoo/.railway-volume))"
 fi
-echo "[railway] $(odoo --version)"
+echo "[railway] $(as_odoo odoo --version)"
 exec setpriv --reuid=odoo --regid=odoo --init-groups env HOME=/var/lib/odoo odoo -c "$CONF"
