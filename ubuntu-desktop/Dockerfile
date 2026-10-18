@@ -26,8 +26,9 @@ RUN printf '#!/bin/sh\nexec /usr/bin/google-chrome-stable --no-sandbox --disable
  && cp /usr/local/bin/google-chrome /usr/local/bin/google-chrome-stable \
  && printf '#!/bin/sh\nexec /usr/bin/code --no-sandbox --disable-dev-shm-usage "$@"\n' > /usr/local/bin/code \
  && chmod +x /usr/local/bin/google-chrome /usr/local/bin/google-chrome-stable /usr/local/bin/code \
- && sed -i 's|^Exec=/usr/bin/google-chrome-stable|Exec=/usr/local/bin/google-chrome-stable|' /usr/share/applications/google-chrome.desktop \
- && sed -i 's|^Exec=/usr/share/code/code|Exec=/usr/local/bin/code|' /usr/share/applications/code*.desktop \
+ && for f in $(grep -rl -e /usr/bin/google-chrome-stable -e /usr/share/code/code /usr/share/applications 2>/dev/null); do \
+      sed -i -e 's|/usr/bin/google-chrome-stable|/usr/local/bin/google-chrome-stable|g' -e 's|/usr/share/code/code|/usr/local/bin/code|g' "$f"; \
+    done \
  && update-alternatives --install /usr/bin/x-www-browser x-www-browser /usr/local/bin/google-chrome 300
 
 # An unauthenticated /railway-health for Railway's healthcheck. It proxies to the Selkies stream server (the
