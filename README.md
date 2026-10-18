@@ -36,6 +36,7 @@ Every template was deployed and tested end to end before it was published; each 
 - [Strapi](https://railway.com/deploy/strapi-2?referralCode=8ySoaR): Strapi 5 on Postgres, admin account set at deploy, uploads on a volume
 - [Twenty](https://railway.com/deploy/twenty-2?referralCode=8ySoaR): Twenty CRM with its worker, Postgres, Redis and private file storage, admin account set at deploy
 - [Typebot](https://railway.com/deploy/typebot-2?referralCode=8ySoaR): chatbot builder and viewer on Postgres and Redis, with a mailbox so the sign-in code arrives on any Railway plan
+- [Ubuntu Desktop](https://railway.com/deploy/ubuntu-desktop-1?referralCode=8ySoaR): Ubuntu XFCE desktop in the browser with Claude Code, Codex, Chrome and VS Code, login required, home directory on a volume
 - [Ubuntu + Claude Code](https://railway.com/deploy/claude-code-box?referralCode=8ySoaR): Ubuntu 24.04 with Claude Code, Codex and Gemini CLI, browser terminal and SSH, home directory on a volume
 - [WordPress](https://railway.com/deploy/wordpress-mariadb-wp-cli?referralCode=8ySoaR): WordPress on MariaDB with WP-CLI
 
@@ -67,6 +68,7 @@ These links carry my Railway referral code: if you create a Railway account thro
 - `searxng-web`: a Caddy password prompt in front of a private SearXNG (only /healthz is open)
 - `strapi`: a clean Strapi 5 project (JavaScript, Postgres) that creates the first admin from STRAPI_ADMIN_EMAIL / STRAPI_ADMIN_PASSWORD before the server listens and trusts Railway's proxy; copy it to add your own content types
 - `twenty`: the official Twenty image plus a start step (shell, curl and jq) that creates the admin account and workspace from TWENTY_ADMIN_EMAIL / TWENTY_ADMIN_PASSWORD
+- `ubuntu-desktop`: linuxserver webtop (Ubuntu XFCE, Selkies over WebSockets) with Node.js 22, Claude Code, Codex, Google Chrome and VS Code; a 4K cap on the virtual screen, Chrome and VS Code wrapped with the flags containers need, a health route that follows the stream server, and a start step that refuses to run without a login
 - `wordpress`: the official WordPress image with prefork only, 128 MB uploads, real client IPs behind Railway's proxy and WP-CLI
 
 MIT licensed. Issues and pull requests are welcome.
