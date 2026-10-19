@@ -12,12 +12,6 @@ mkdir -p /data/brain
 chown -R bun:bun /data
 as_bun() { setpriv --reuid=bun --regid=bun --init-groups "$@"; }
 
-# Chat features (fact extraction, think, query expansion) pick Anthropic or OpenAI keys on their own; with only
-# an OpenRouter key they need a model named.
-if [ -z "$GBRAIN_MODEL" ] && [ -n "$OPENROUTER_API_KEY" ] && [ -z "$ANTHROPIC_API_KEY$OPENAI_API_KEY" ]; then
-  export GBRAIN_MODEL="openrouter:openai/gpt-5-mini"
-fi
-
 cd /data
 if [ ! -f /data/.gbrain/config.json ]; then
   echo "[railway] first start: setting up the brain on Postgres"
@@ -27,6 +21,8 @@ if [ ! -f /data/.gbrain/config.json ]; then
   # keyword-only until one is added.
   as_bun gbrain init --url "$GBRAIN_DATABASE_URL" --non-interactive --content-root /data/brain --git
 fi
+# Setup migrations on a new brain, schema migrations after an upgrade; a no-op when nothing is pending.
+as_bun gbrain apply-migrations --yes --no-autopilot-install
 
 # The worker drains the job queue (embedding, sync, subagent jobs). GBRAIN_AUTOPILOT=true runs autopilot
 # instead, which brings its own worker and also runs the maintenance cycle (it spends model tokens).
