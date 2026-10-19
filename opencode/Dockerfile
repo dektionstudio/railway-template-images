@@ -3,7 +3,7 @@
 # Railway passes service variables to build args, so changing OPENCODE_VERSION and redeploying upgrades it.
 FROM node:24-bookworm-slim
 
-ARG OPENCODE_VERSION=1.18.32
+ARG OPENCODE_VERSION=1.19.3
 RUN apt-get update && apt-get install -y --no-install-recommends \
       git ca-certificates curl ripgrep openssh-client python3 procps less nano \
     && rm -rf /var/lib/apt/lists/* \
