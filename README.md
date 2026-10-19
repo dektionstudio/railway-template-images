@@ -7,6 +7,7 @@ Dockerfiles behind the Railway templates published by Dektion Studio. Railway bu
 Every template was deployed and tested end to end before it was published; each template's page on Railway says what was tested.
 
 - [Activepieces](https://railway.com/deploy/activepieces-4?referralCode=8ySoaR): automation with Postgres and Redis, owner account set at deploy
+- [Archon](https://railway.com/deploy/archon-1?referralCode=8ySoaR): AI coding workflows with Claude Code, Codex and Pi on Postgres, with Archon's web login on and the owner account set at deploy
 - [Bifrost](https://railway.com/deploy/bifrost-3?referralCode=8ySoaR): AI gateway for 20+ providers, dashboard login and API keys required from the first start
 - [Claude Code UI](https://railway.com/deploy/claude-code-ui?referralCode=8ySoaR): CloudCLI with Claude Code, Codex and OpenCode, account created before the page goes public, home directory on a volume
 - [code-server](https://railway.com/deploy/code-server-4?referralCode=8ySoaR): VS Code in the browser with a password, Claude Code and Codex, home directory on a volume
@@ -46,6 +47,7 @@ These links carry my Railway referral code: if you create a Railway account thro
 ## What each folder adds
 
 - `activepieces`: the official Activepieces image plus a start step that signs the platform owner up from ADMIN_EMAIL / ADMIN_PASSWORD (later sign-ups need an invitation)
+- `archon`: the official Archon image on Postgres with its web login (Better Auth) on and every API call gated; the first start creates the owner account while Archon listens on localhost only, and sets the login's public URL because Railway terminates HTTPS in front
 - `bifrost`: the official Bifrost image plus a start step that writes a locked-down config.json on every start (dashboard login, a key required on every model call, CORS limited to the public domain, providers from variables)
 - `cloudcli`: CloudCLI (Claude Code UI) from npm, pinned, on Node.js 22 with the Claude Code, Codex and OpenCode CLIs; the first start creates the account on localhost before the public port opens, and everything runs as the node user with the home directory on a volume
 - `code-server`: the official code-server image plus Node.js 22 and the Claude Code and Codex CLIs; the start step hands the root-owned volume to the coder user and refuses to start without PASSWORD
