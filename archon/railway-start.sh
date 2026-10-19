@@ -14,7 +14,7 @@ mkdir -p /.archon
 if [ ! -f /.archon/.railway-owner ]; then
   SETUP_PORT=3999
   # its own process group, so stopping it also stops the server child that `bun run` starts
-  setsid env HOST=127.0.0.1 PORT=$SETUP_PORT docker-entrypoint.sh > /tmp/archon-setup.log 2>&1 &
+  setsid env HOST=127.0.0.1 PORT=$SETUP_PORT BETTER_AUTH_URL=http://127.0.0.1:$SETUP_PORT docker-entrypoint.sh > /tmp/archon-setup.log 2>&1 &
   pid=$!
   i=0
   until curl -fs "http://127.0.0.1:$SETUP_PORT/api/health" > /dev/null; do
