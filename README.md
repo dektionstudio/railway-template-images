@@ -23,7 +23,6 @@ Every template was deployed and tested end to end before it was published; each 
 - [Minecraft](https://railway.com/deploy/minecraft-server-p-1?referralCode=8ySoaR): Paper server with the world on a volume
 - [n8n](https://railway.com/deploy/n8n-9?referralCode=8ySoaR): n8n on Postgres, owner account set at deploy
 - [NiubiGEO](https://railway.com/deploy/niubigeo?referralCode=8ySoaR): AI brand visibility reports behind a login
-- [Odoo](https://railway.com/deploy/odoo?referralCode=8ySoaR): Odoo 20 ERP on Postgres, admin login set before the web server starts, database manager off
 - [Open WebUI](https://railway.com/deploy/open-webui-8?referralCode=8ySoaR): Open WebUI on Postgres with pgvector, admin account set at deploy
 - [Ollama](https://railway.com/deploy/ollama-1?referralCode=8ySoaR): Ollama with an API key in front, models on a volume
 - [OpenHands](https://railway.com/deploy/openhands-1?referralCode=8ySoaR): OpenHands Agent Canvas behind a generated key, with Claude Code and Codex, home directory on a volume
