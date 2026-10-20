@@ -14,6 +14,7 @@ Every template was deployed and tested end to end before it was published; each 
 - [DBX](https://railway.com/deploy/dbx?referralCode=8ySoaR): web database client for 100+ databases with an MCP endpoint, password set at deploy
 - [EmDash](https://railway.com/deploy/emdash?referralCode=8ySoaR): EmDash CMS (Astro) with the admin and its first-run setup behind a password, data on a volume
 - [Doory](https://railway.com/deploy/doory?referralCode=8ySoaR): open-source Canva alternative with its templates, elements and fonts loaded, admin account set at deploy
+- [GBrain](https://railway.com/deploy/gbrain?referralCode=8ySoaR): Garry Tan's agent memory on Postgres with pgvector, over MCP with a generated owner credential, and the jobs worker
 - [Ghost](https://railway.com/deploy/ghost-1?referralCode=8ySoaR): Ghost 6 with MySQL, owner account set at deploy
 - [Hermes Agent](https://railway.com/deploy/hermes-agent-official-image?referralCode=8ySoaR): Nous Research's agent on the official image, with an API key and Telegram
 - [Hermes Agent with Hindsight Memory](https://railway.com/deploy/hermes-agent-with-hindsight-memory?referralCode=8ySoaR): Hermes with self-hosted Hindsight memory
@@ -28,6 +29,7 @@ Every template was deployed and tested end to end before it was published; each 
 - [Ollama](https://railway.com/deploy/ollama-1?referralCode=8ySoaR): Ollama with an API key in front, models on a volume
 - [OpenHands](https://railway.com/deploy/openhands-1?referralCode=8ySoaR): OpenHands Agent Canvas behind a generated key, with Claude Code and Codex, home directory on a volume
 - [OpenMuse](https://railway.com/deploy/openmuse-1?referralCode=8ySoaR): CopilotKit's personal agent with a private browser worker, on Postgres
+- [Omnigent](https://railway.com/deploy/omnigent-1?referralCode=8ySoaR): Omnigent on Postgres with the admin set at deploy, plus a host on Railway so Claude Code, Codex and Pi sessions run without a laptop
 - [OpenCode](https://railway.com/deploy/opencode-web?referralCode=8ySoaR): OpenCode's web UI with a password
 - [OpenDesign](https://railway.com/deploy/opendesign?referralCode=8ySoaR): OpenDesign with Claude Code, Codex and OpenCode installed
 - [Paperclip](https://railway.com/deploy/paperclip-official-image?referralCode=8ySoaR): Paperclip with Postgres, first admin invite in the deploy logs
@@ -54,6 +56,7 @@ These links carry my Railway referral code: if you create a Railway account thro
 - `coding-box`: Ubuntu 24.04 with a browser terminal (ttyd), SSH and tmux, with Claude Code, Codex and Gemini CLI preinstalled. The home directory goes on a Railway volume
 - `doory`: Doory at a pinned commit in one container (nginx serving the web app and the media on the volume, uvicorn serving the API and the co-editing WebSockets), with the element library, fonts, audio and starter templates loaded on the first start and the admin created from DOORY_ADMIN_EMAIL / DOORY_ADMIN_PASSWORD
 - `emdash`: EmDash's Node blog starter at a pinned commit, built where it runs (Astro bakes its session path in), SQLite and uploads on the volume, and Caddy in front so the admin and the setup wizard need a password before EmDash's passkey login
+- `gbrain`: GBrain at a release tag on Bun (upstream ships no image), set up on Postgres on the first start with its markdown in a git repo on the volume, migrations on every start, the jobs worker next to `gbrain serve --http`, all as a non-root user
 - `ghost`: the official Ghost image plus a start step that creates the owner account through Ghost's setup API from GHOST_ADMIN_EMAIL / GHOST_ADMIN_PASSWORD
 - `librechat`: a pinned LibreChat release plus a start step that creates the admin account from ADMIN_EMAIL / ADMIN_PASSWORD (registration stays closed), keeps uploads on a volume and adds an OpenRouter endpoint
 - `lobehub`: LobeHub's official image plus a start step that creates the file bucket with a CORS rule for browser uploads, and a JWKS_KEY kept in that private bucket
