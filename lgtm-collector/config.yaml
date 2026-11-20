@@ -1,0 +1,48 @@
+extensions:
+  bearertokenauth:
+    token: ${env:INGEST_TOKEN}
+  health_check:
+    endpoint: 0.0.0.0:13133
+
+receivers:
+  otlp:
+    protocols:
+      http:
+        endpoint: 0.0.0.0:4318
+        auth:
+          authenticator: bearertokenauth
+      grpc:
+        endpoint: 0.0.0.0:4317
+        auth:
+          authenticator: bearertokenauth
+
+processors:
+  memory_limiter:
+    check_interval: 1s
+    limit_percentage: 80
+    spike_limit_percentage: 20
+  batch: {}
+
+exporters:
+  otlphttp/tempo:
+    endpoint: ${env:TEMPO_OTLP_URL}
+  otlphttp/loki:
+    endpoint: ${env:LOKI_OTLP_URL}
+  otlphttp/prometheus:
+    endpoint: ${env:PROMETHEUS_OTLP_URL}
+
+service:
+  extensions: [bearertokenauth, health_check]
+  pipelines:
+    traces:
+      receivers: [otlp]
+      processors: [memory_limiter, batch]
+      exporters: [otlphttp/tempo]
+    logs:
+      receivers: [otlp]
+      processors: [memory_limiter, batch]
+      exporters: [otlphttp/loki]
+    metrics:
+      receivers: [otlp]
+      processors: [memory_limiter, batch]
+      exporters: [otlphttp/prometheus]
