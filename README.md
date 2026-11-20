@@ -22,6 +22,7 @@ Every template was deployed and tested end to end before it was published; each 
 - [LibreChat](https://railway.com/deploy/librechat-2?referralCode=8ySoaR): pinned release, admin account set at deploy, file search
 - [LobeHub](https://railway.com/deploy/lobehub-1?referralCode=8ySoaR): LobeHub with Postgres and private file storage
 - [Medusa](https://railway.com/deploy/medusa-1?referralCode=8ySoaR): Medusa 2 commerce with its admin and Next.js storefront, store seeded and admin set at deploy
+- [Metabase](https://railway.com/deploy/metabase-4?referralCode=8ySoaR): Metabase BI dashboards on a private Postgres, admin account set at deploy
 - [Minecraft](https://railway.com/deploy/minecraft-server-p-1?referralCode=8ySoaR): Paper server with the world on a volume
 - [n8n](https://railway.com/deploy/n8n-9?referralCode=8ySoaR): n8n on Postgres, owner account set at deploy
 - [NiubiGEO](https://railway.com/deploy/niubigeo?referralCode=8ySoaR): AI brand visibility reports behind a login
@@ -61,7 +62,7 @@ These links carry my Railway referral code: if you create a Railway account thro
 - `librechat`: a pinned LibreChat release plus a start step that creates the admin account from ADMIN_EMAIL / ADMIN_PASSWORD (registration stays closed), keeps uploads on a volume and adds an OpenRouter endpoint
 - `lobehub`: LobeHub's official image plus a start step that creates the file bucket with a CORS rule for browser uploads, and a JWKS_KEY kept in that private bucket
 - `medusa`, `medusa-storefront`: Medusa's official dtc-starter at a pinned commit: production config (Redis modules, uploads on a volume), the admin and the publishable key set at start, and a storefront that builds before the backend runs
-- `metabase`: the official Metabase image plus a start step that completes the first-run setup; not published yet, since it needs more than 1 GB of RAM to start
+- `metabase`: the official Metabase image plus a start step that completes the first-run setup from MB_ADMIN_EMAIL / MB_ADMIN_PASSWORD as soon as Metabase answers, with its own data in Postgres
 - `n8n`: the official n8n image plus a start step that sets up the owner account from N8N_OWNER_EMAIL / N8N_OWNER_PASSWORD once n8n is ready
 - `niubigeo`: NiubiGEO's official image with its workbench and scheduling worker in one container, behind a password
 - `odoo`: the official Odoo 20 image plus a start step that writes the config (the image reads PORT as the database port), turns the database manager off with a generated master password, and sets up the database and admin login before the web server starts
