@@ -37,6 +37,7 @@ Every template was deployed and tested end to end before it was published; each 
 - [Pterodactyl](https://railway.com/deploy/pterodactyl-1?referralCode=8ySoaR): game server panel on MariaDB, admin account set at deploy, login captcha fixed
 - [SearXNG](https://railway.com/deploy/searxng-4?referralCode=8ySoaR): private SearXNG behind a password, with engines that answer from Railway
 - [SearXNG MCP](https://railway.com/deploy/searxng-mcp?referralCode=8ySoaR): web search for AI agents over MCP, with a private SearXNG and no API key
+- [Sim](https://railway.com/deploy/sim-1?referralCode=8ySoaR): AI agent workflows with scheduled runs (the Cron service), sign-in limited to your email
 - [SillyTavern](https://railway.com/deploy/sillytavern-official-image?referralCode=8ySoaR): official image, password-protected, chats on a volume
 - [Strapi](https://railway.com/deploy/strapi-2?referralCode=8ySoaR): Strapi 5 on Postgres, admin account set at deploy, uploads on a volume
 - [Twenty](https://railway.com/deploy/twenty-2?referralCode=8ySoaR): Twenty CRM with its worker, Postgres, Redis and private file storage, admin account set at deploy
