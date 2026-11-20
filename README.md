@@ -19,6 +19,7 @@ Every template was deployed and tested end to end before it was published; each 
 - [Hermes Agent](https://railway.com/deploy/hermes-agent-official-image?referralCode=8ySoaR): Nous Research's agent on the official image, with an API key and Telegram
 - [Hermes Agent with Hindsight Memory](https://railway.com/deploy/hermes-agent-with-hindsight-memory?referralCode=8ySoaR): Hermes with self-hosted Hindsight memory
 - [Hindsight Memory Server](https://railway.com/deploy/hindsight-agent-memory-secure-slim?referralCode=8ySoaR): long-term memory for AI agents over MCP and REST
+- [Langfuse](https://railway.com/deploy/langfuse-2?referralCode=8ySoaR): Langfuse v4 LLM tracing, evals and prompts on ClickHouse, first user and API keys set at deploy
 - [LibreChat](https://railway.com/deploy/librechat-2?referralCode=8ySoaR): pinned release, admin account set at deploy, file search
 - [LobeHub](https://railway.com/deploy/lobehub-1?referralCode=8ySoaR): LobeHub with Postgres and private file storage
 - [Medusa](https://railway.com/deploy/medusa-1?referralCode=8ySoaR): Medusa 2 commerce with its admin and Next.js storefront, store seeded and admin set at deploy
