@@ -26,11 +26,11 @@ Every template was deployed and tested end to end before it was published; each 
 - [LobeHub](https://railway.com/deploy/lobehub-1?referralCode=8ySoaR): LobeHub with Postgres and private file storage
 - [Medusa](https://railway.com/deploy/medusa-1?referralCode=8ySoaR): Medusa 2 commerce with its admin and Next.js storefront, store seeded and admin set at deploy
 - [Metabase](https://railway.com/deploy/metabase-4?referralCode=8ySoaR): Metabase BI dashboards on a private Postgres, admin account set at deploy
-- [Minecraft](https://railway.com/deploy/minecraft-server-p-1?referralCode=8ySoaR): Paper server with the world on a volume
+- [Minecraft](https://railway.com/deploy/minecraft-server-p-1?referralCode=8ySoaR): Paper, Fabric or Forge server, or a Modrinth modpack, with the world on a volume
 - [n8n](https://railway.com/deploy/n8n-9?referralCode=8ySoaR): n8n on Postgres, owner account set at deploy
 - [NiubiGEO](https://railway.com/deploy/niubigeo?referralCode=8ySoaR): AI brand visibility reports behind a login
 - [Open WebUI](https://railway.com/deploy/open-webui-8?referralCode=8ySoaR): Open WebUI on Postgres with pgvector, admin account set at deploy
-- [Ollama](https://railway.com/deploy/ollama-1?referralCode=8ySoaR): Ollama with an API key in front, models on a volume
+- [Ollama](https://railway.com/deploy/ollama-1?referralCode=8ySoaR): Ollama with Open WebUI as the chat page, the public API behind a key, models on a volume
 - [OpenHands](https://railway.com/deploy/openhands-1?referralCode=8ySoaR): OpenHands Agent Canvas behind a generated key, with Claude Code and Codex, home directory on a volume
 - [OpenMuse](https://railway.com/deploy/openmuse-1?referralCode=8ySoaR): CopilotKit's personal agent with a private browser worker, on Postgres
 - [Omnigent](https://railway.com/deploy/omnigent-1?referralCode=8ySoaR): Omnigent on Postgres with the admin set at deploy, plus a host on Railway so Claude Code, Codex and Pi sessions run without a laptop
@@ -73,7 +73,7 @@ These links carry my Railway referral code: if you create a Railway account thro
 - `n8n`: the official n8n image plus a start step that sets up the owner account from N8N_OWNER_EMAIL / N8N_OWNER_PASSWORD once n8n is ready
 - `niubigeo`: NiubiGEO's official image with its workbench and scheduling worker in one container, behind a password
 - `odoo`: the official Odoo 20 image plus a start step that writes the config (the image reads PORT as the database port), turns the database manager off with a generated master password, and sets up the database and admin login before the web server starts
-- `ollama`: the official Ollama image with Caddy in front checking OLLAMA_API_KEY (Ollama itself has no authentication), models pulled from OLLAMA_PULL_MODELS
+- `ollama`: the official Ollama image with Caddy in front checking OLLAMA_API_KEY (Ollama itself has no authentication), models pulled from OLLAMA_PULL_MODELS; port 11434 is open on the project's private network for Open WebUI, and llama.cpp gets as many threads as the container has CPUs (Railway shows the host's 48 cores)
 - `open-design`: OpenDesign's official image plus the Claude Code, Codex and OpenCode CLIs (upstream leaves them out and suggests a separate layer for servers), data and CLI logins on a volume
 - `openhands`: the official Agent Canvas image plus the Claude Code and Codex CLIs; the start step hands the volume to the openhands user, keeps /projects on it, refuses to start without LOCAL_BACKEND_API_KEY and passes that key to the agent server
 - `openmuse-api`, `openmuse-browser`, `openmuse-web`: OpenMuse built from a pinned commit: the API (on Postgres instead of its embedded store), the Chromium worker listening on Railway's private IPv6 network, and the Expo web app behind Caddy
