@@ -8,6 +8,19 @@ fi
 # [::] is dual-stack: Railway's private network is IPv6, Caddy connects over 127.0.0.1.
 export OLLAMA_HOST="[::]:11434"
 
+# llama.cpp (Ollama's runner, which inherits this environment) sizes its thread pool from the host's cores, 48 on
+# Railway's machines, not from the container's CPU limit. 48 threads on 8 vCPUs took 180 s for a one-word answer.
+# Use the cgroup quota instead, unless LLAMA_ARG_THREADS is set.
+if [ -z "${LLAMA_ARG_THREADS:-}" ] && [ -r /sys/fs/cgroup/cpu.max ]; then
+  read -r quota period < /sys/fs/cgroup/cpu.max
+  if [ "$quota" != "max" ] && [ "${period:-0}" -gt 0 ]; then
+    export LLAMA_ARG_THREADS=$(( (quota + period - 1) / period ))
+  fi
+fi
+echo "[railway] llama.cpp threads: ${LLAMA_ARG_THREADS:-auto}"
+# llama-server's prompt cache defaults to 8 GB of RAM, the whole Hobby limit; 512 MB is plenty for a few users.
+export LLAMA_ARG_CACHE_RAM="${LLAMA_ARG_CACHE_RAM:-512}"
+
 /bin/ollama serve &
 ollama_pid=$!
 caddy run --config /etc/caddy/Caddyfile --adapter caddyfile &
