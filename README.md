@@ -15,7 +15,9 @@ Every template was deployed and tested end to end before it was published; each 
 - [EmDash](https://railway.com/deploy/emdash?referralCode=8ySoaR): EmDash CMS (Astro) with the admin and its first-run setup behind a password, data on a volume
 - [Doory](https://railway.com/deploy/doory?referralCode=8ySoaR): open-source Canva alternative with its templates, elements and fonts loaded, admin account set at deploy
 - [GBrain](https://railway.com/deploy/gbrain?referralCode=8ySoaR): Garry Tan's agent memory on Postgres with pgvector, over MCP with a generated owner credential, and the jobs worker
+- [GitLab](https://railway.com/deploy/gitlab-2?referralCode=8ySoaR): GitLab CE with CI/CD, root password set at deploy, secrets kept on the volume, Git over SSH
 - [Ghost](https://railway.com/deploy/ghost-1?referralCode=8ySoaR): Ghost 6 with MySQL, owner account set at deploy
+- [Grafana](https://railway.com/deploy/grafana-5?referralCode=8ySoaR): Grafana with Loki, Tempo and Prometheus behind a token-protected OpenTelemetry Collector
 - [Hermes Agent](https://railway.com/deploy/hermes-agent-official-image?referralCode=8ySoaR): Nous Research's agent on the official image, with an API key and Telegram
 - [Hermes Agent with Hindsight Memory](https://railway.com/deploy/hermes-agent-with-hindsight-memory?referralCode=8ySoaR): Hermes with self-hosted Hindsight memory
 - [Hindsight Memory Server](https://railway.com/deploy/hindsight-agent-memory-secure-slim?referralCode=8ySoaR): long-term memory for AI agents over MCP and REST
@@ -36,6 +38,7 @@ Every template was deployed and tested end to end before it was published; each 
 - [OpenDesign](https://railway.com/deploy/opendesign?referralCode=8ySoaR): OpenDesign with Claude Code, Codex and OpenCode installed
 - [Paperclip](https://railway.com/deploy/paperclip-official-image?referralCode=8ySoaR): Paperclip with Postgres, first admin invite in the deploy logs
 - [Pterodactyl](https://railway.com/deploy/pterodactyl-1?referralCode=8ySoaR): game server panel on MariaDB, admin account set at deploy, login captcha fixed
+- [Rocket.Chat](https://railway.com/deploy/rocketchat-2?referralCode=8ySoaR): team chat on a MongoDB replica set, admin set at deploy, sign-up off
 - [SearXNG](https://railway.com/deploy/searxng-4?referralCode=8ySoaR): private SearXNG behind a password, with engines that answer from Railway
 - [SearXNG MCP](https://railway.com/deploy/searxng-mcp?referralCode=8ySoaR): web search for AI agents over MCP, with a private SearXNG and no API key
 - [Sim](https://railway.com/deploy/sim-1?referralCode=8ySoaR): AI agent workflows with scheduled runs (the Cron service), sign-in limited to your email
@@ -60,7 +63,9 @@ These links carry my Railway referral code: if you create a Railway account thro
 - `doory`: Doory at a pinned commit in one container (nginx serving the web app and the media on the volume, uvicorn serving the API and the co-editing WebSockets), with the element library, fonts, audio and starter templates loaded on the first start and the admin created from DOORY_ADMIN_EMAIL / DOORY_ADMIN_PASSWORD
 - `emdash`: EmDash's Node blog starter at a pinned commit, built where it runs (Astro bakes its session path in), SQLite and uploads on the volume, and Caddy in front so the admin and the setup wizard need a password before EmDash's passkey login
 - `gbrain`: GBrain at a release tag on Bun (upstream ships no image), set up on Postgres on the first start with its markdown in a git repo on the volume, migrations on every start, the jobs worker next to `gbrain serve --http`, all as a non-root user
+- `gitlab`: the GitLab CE Omnibus image with /etc/gitlab (gitlab-secrets.json) moved onto the one volume, the root password from the deploy, sign-up turned off after the first start, and Git over SSH through the TCP proxy
 - `ghost`: the official Ghost image plus a start step that creates the owner account through Ghost's setup API from GHOST_ADMIN_EMAIL / GHOST_ADMIN_PASSWORD
+- `lgtm-collector`, `lgtm-grafana`, `lgtm-loki`, `lgtm-prometheus`, `lgtm-tempo`: one small config each for the Grafana stack: the collector requires a bearer token and forwards OTLP to the private Tempo, Loki and Prometheus; Grafana has them provisioned and linked
 - `librechat`: a pinned LibreChat release plus a start step that creates the admin account from ADMIN_EMAIL / ADMIN_PASSWORD (registration stays closed), keeps uploads on a volume and adds an OpenRouter endpoint
 - `lobehub`: LobeHub's official image plus a start step that creates the file bucket with a CORS rule for browser uploads, and a JWKS_KEY kept in that private bucket
 - `medusa`, `medusa-storefront`: Medusa's official dtc-starter at a pinned commit: production config (Redis modules, uploads on a volume), the admin and the publishable key set at start, and a storefront that builds before the backend runs
